@@ -8,6 +8,8 @@ import MyButton from "./components/UI/button/MyButton";
 import { usePosts } from "./components/hooks/usePosts";
 import axios from "axios";
 import PostService from "./components/API/PostService";
+import Loader from "./components/UI/Loader/Loader";
+import { useFetching } from "./components/hooks/useFetching";
 
 function App() {
   const [posts, setPosts] = useState([]);
@@ -15,6 +17,10 @@ function App() {
   const [filter, setFilter] = useState({ sort: '', query: '' });
   const [modal, setModal] = useState(false);
   const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query);
+  const [fetchPosts, isPostLoading, postError] = useFetching(async () => {
+    const posts = await PostService.getAll();
+    setPosts(posts);
+  })
 
   useEffect(() => {
     fetchPosts()
@@ -29,11 +35,6 @@ function App() {
     setPosts(posts.filter(p => p.id !== post.id))
   };
 
-  async function fetchPosts() {
-    const posts = await PostService.getAll();
-    setPosts(posts);
-  };
-
   return (
     <div className="App">
       <MyButton style={{marginTop: '20px'}} onClick={() => setModal(true)}>Создать пост</MyButton>
@@ -42,7 +43,11 @@ function App() {
       </MyModal>
       <hr style={{ margin: '15px 0' }}></hr>
       <PostFilter filter={filter} setFilter={setFilter} />
-      <PostList remove={removePost} posts={sortedAndSearchedPosts} title='Список постов 1' />
+      {postError && <h1 style={{textAlign: 'center'}}>{postError}</h1>}
+      {isPostLoading
+      ? <div style={{display: "flex", justifyContent: "center", marginTop: '50px'}}><Loader/></div>
+      : <PostList remove={removePost} posts={sortedAndSearchedPosts} title='Список постов 1' />
+      }
     </div>
   )
 };
