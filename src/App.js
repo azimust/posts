@@ -59,7 +59,7 @@ function App() {
         ? <div style={{ display: "flex", justifyContent: "center", marginTop: '50px' }}><Loader /></div>
         : <PostList remove={removePost} posts={sortedAndSearchedPosts} title='Список постов' />
       }
-      <Pagination page={page} changePage={changePage} totalPages={totalPages}/>
+      <Pagination page={page} changePage={changePage} totalPages={totalPages} />
     </div>
   )
 };
