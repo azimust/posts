@@ -16,7 +16,7 @@
 
 .post {
     display: flex;
-    padding: 15px;
+    padding: 20px;
     border: 2px solid teal;
     margin-top: 15px;
     justify-content: space-between;
@@ -40,6 +40,11 @@
 .post-exit-active {
     transform: translateX(-150px);
     transition: all 500ms ease-in;
+}
+
+.post__btns {
+    display: flex;
+    gap: 5px;
 }
 
 /* Pagination */
