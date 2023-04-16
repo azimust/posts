@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: sans-serif;
 }
 
 #root {
@@ -74,9 +75,26 @@
     display: flex;
     align-items: center;
     padding: 0 15px;
-    background-color: rgb(137, 138, 138);
+    background-color: teal;
+}
+
+.navbar__btn {
+    padding: 5px 15px;
+    color: rgb(255, 255, 255);
+    font-size: 14px;
+    background: transparent;
+    border: 1px solid rgb(255, 255, 255);
+    cursor: pointer;
 }
 
 .navbar__links {
     margin-left: auto;
+    display: flex;
+    gap: 20px;
+    color:  white;
+}
+
+.navbar__links a{
+    text-decoration: none;
+    color:  white;
 }

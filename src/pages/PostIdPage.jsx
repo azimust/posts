@@ -28,9 +28,9 @@ const PostIdPage = () => {
             <h1>Вы открыли пост с id = {params.id}</h1>
             {isLoading
                 ? <Loader />
-                : <div>{post.id}. {post.title}</div>
+                : <div style={{marginTop:'15px'}}>{post.id}. {post.title}</div>
             }
-            <h1>Комментарии</h1>
+            <h1 style={{marginTop: '20px'}}>Комментарии</h1>
             {iscComLoading
                 ? <Loader />
                 : <div>
